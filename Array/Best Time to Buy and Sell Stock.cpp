@@ -5,7 +5,7 @@ public:
         int n=arr.size();
         for(int i=1;i<n;i++){
             if(arr[i]<mn){
-                mn=min(mn,arr[i]);
+                mn=arr[i];
                 //cout<<"Min: "<<mn;
             }
             else if(arr[i]>mn){
