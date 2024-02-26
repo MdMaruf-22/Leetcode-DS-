@@ -1,0 +1,37 @@
+class Solution {
+public:
+    bool validateBinaryTreeNodes(int n, vector<int>& leftChild, vector<int>& rightChild) {
+        vector<bool> vis(n,false);
+        //For finding the root
+        unordered_set<int> node;
+        for(int i=0;i<n;i++) node.insert(i);
+        for(int vertex:leftChild) node.erase(vertex);
+        for(int vertex:rightChild) node.erase(vertex);
+        //If more than one value that means moret than 1 root
+        if(node.size()!=1) return false;
+        int root = *node.begin();
+        //Check cycle from root node
+        if(hasCycle(root,leftChild,rightChild,vis,-1)) return false;
+        //Check for unviisted node 
+        bool flag=true;
+        for(bool x:vis){
+            if(!x){
+                flag=false;
+                break;
+            }
+        }
+        return flag;
+    }
+    bool hasCycle(int node, vector<int>& leftChild, vector<int>& rightChild, vector<bool>& vis, int parent) {
+    if (vis[node]) return true; // If the current node is already visited, there is a cycle
+    vis[node] = true; // Mark the current node as visited
+    // Check if there is a cycle in the left subtree
+    if (leftChild[node] != -1 && hasCycle(leftChild[node], leftChild, rightChild, vis, node))
+        return true;
+    // Check if there is a cycle in the right subtree
+    if (rightChild[node] != -1 && hasCycle(rightChild[node], leftChild, rightChild, vis, node))
+        return true;
+    return false; // If no cycle found in either subtree, return false
+}
+
+};
