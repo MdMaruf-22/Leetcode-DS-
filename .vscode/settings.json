@@ -7,6 +7,10 @@
         "forward_list": "cpp",
         "list": "cpp",
         "random": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "bitset": "cpp",
+        "regex": "cpp",
+        "utility": "cpp",
+        "valarray": "cpp"
     }
 }
