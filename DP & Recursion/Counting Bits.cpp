@@ -22,12 +22,12 @@ void calc(int i, vector<int> &ans, vector<int> &memo) {
         calc(i - 1, ans, memo);
         ans[i] = countOnes(i);
         memo[i] = ans[i];
+}
+int countOnes(int num) {
+    int count = 0;
+    while (num > 0) {
+        count += num & 1;  
+        num >>= 1;  
     }
-    int countOnes(int num) {
-        int count = 0;
-        while (num > 0) {
-            count += num & 1;  
-            num >>= 1;  
-        }
-        return count;
-    }
+    return count;
+}
